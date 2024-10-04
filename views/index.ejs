@@ -74,7 +74,7 @@
             <% TrendingAnimes.data.map(anime=> { %>
                 <div style="display: flex;" class="swiper-slide container">
 
-                    <img src=<%=anime.attributes.posterImage.original %>>
+                    <img src=<%=anime.attributes.coverImage?.original || anime.attributes.posterImage?.original %>>
                     <div class="home-text">
                         <span>
                             <%= anime.attributes.titles.en %>
@@ -89,33 +89,6 @@
                     </div>
                 </div>
                 <% }) %>
-                    <!-- <div style="display: flex;" class="swiper-slide container">
-                        <img src="/images/image.png" alt="">
-                        <div class="home-text">
-                            <span>Marvel Universe</span>
-                            <h1>Venom: Let There <br> Be Carnages</h1>
-                            <a href="#" class="btn">Explore</a>
-                        </div>
-                    </div>
-                    <div style="display: flex;" class="swiper-slide container">
-                        <img src="/images/image.png" alt="">
-                        <div class="home-text">
-                            <span>Marvel Universe</span>
-                            <h1>Venom: Let There <br> Be Carnages</h1>
-                            <a href="#" class="btn">Book Now</a>
-
-                        </div>
-
-                    </div>
-                    <div style="display: flex;" class="swiper-slide container">
-                        <img src="/images/image.png" alt="">
-                        <div class="home-text">
-                            <span>Marvel Universe</span>
-                            <h1>Venom: Let There <br> Be Carnages</h1>
-                            <a href="#" class="btn">Explore</a>
-
-                        </div>
-                    </div> -->
                     <div class="swiper-pagination"></div>
         </div>
 
@@ -125,96 +98,15 @@
             Most popular
         </h2>
         <div class="containermov">
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
-            <div class="card">
-                <img src="/images/image2.jpg" alt="">
-                <h1>
-                    Attach on titan
-                </h1>
-            </div>
+            <% PopularAnimes.data.map(anime=> { %>
+                <div class="card">
+                    <img src=<%=anime.attributes.posterImage.original %> alt="">
+                    <h1>
+                        <%= anime.attributes.titles.en %>
+                    </h1>
+                </div>
+                <% }) %>
+
         </div>
 
 
@@ -224,17 +116,22 @@
             <h2 class="heading">
                 Trending
             </h2>
-            <div class="anime-card">
-                <img src="/images/image2.jpg" alt="One Piece" class="anime-image">
-                <div class="anime-info">
-                    <div class="anime-title">One Piece</div>
-                    <div class="anime-stats">
-                        <span class="stat green">CC 1120</span>
-                        <span class="stat blue">🎤 1096</span>
-                        <span class="stat type">• TV</span>
+            <% TrendingAnimes.data.map(anime=> { %>
+                <div class="anime-card">
+                    <img class="anime-image" src=<%=anime.attributes.posterImage.small %> >
+                    <div class="anime-info">
+                        <div class="anime-title">
+                            <%= anime.attributes.titles.en %>
+                        </div>
+                        <div class="anime-stats">
+                            <span class="stat green">CC 1120</span>
+                            <span class="stat blue">🎤 1096</span>
+                            <span class="stat type">• TV</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <% }) %>
+
 
 
         </div>
@@ -242,17 +139,21 @@
             <h2 class="heading">
                 Favourite
             </h2>
-            <div class="anime-card">
-                <img src="/images/image2.jpg" alt="One Piece" class="anime-image">
-                <div class="anime-info">
-                    <div class="anime-title">One Piece</div>
-                    <div class="anime-stats">
-                        <span class="stat green">CC 1120</span>
-                        <span class="stat blue">🎤 1096</span>
-                        <span class="stat type">• TV</span>
+            <% favoritesAnimes.data.map(anime=> { %>
+                <div class="anime-card">
+                    <img class="anime-image" src=<%=anime.attributes.posterImage.small %> >
+                    <div class="anime-info">
+                        <div class="anime-title">
+                            <%= anime.attributes.titles.en %>
+                        </div>
+                        <div class="anime-stats">
+                            <span class="stat green">CC 1120</span>
+                            <span class="stat blue">🎤 1096</span>
+                            <span class="stat type">• TV</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <% }) %>
 
 
         </div>
@@ -261,20 +162,12 @@
                 Genre
             </h2>
             <div class="genre-card">
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
-                <div class="genre-tag">action</div>
+                <% genres.data.map(genre=> { %>
+                    <div class="genre-tag">
+                        <%= genre.attributes.name %>
+                    </div>
+
+                    <% }) %>
             </div>
         </div>
     </section>

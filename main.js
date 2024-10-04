@@ -16,11 +16,13 @@ app.get('/', async (req, res) => {
     const data1 = await fetch('https://kitsu.io/api/edge/trending/anime')
     const data2 = await fetch('https://kitsu.io/api/edge/anime?sort=-userCount')
     const data3 = await fetch('https://kitsu.io/api/edge/anime?sort=-favoritesCount')
+    const data4 = await fetch('https://kitsu.io/api/edge/genres')
 
     const TrendingAnimes = await data1.json()
     const PopularAnimes = await data2.json()
     const favoritesAnimes = await data3.json()
-    res.render('index', { TrendingAnimes, PopularAnimes, favoritesAnimes })
+    const genres = await data4.json()
+    res.render('index', { TrendingAnimes, PopularAnimes, favoritesAnimes, genres })
 })
 app.get('/index', (req, res) => {
     res.send('ss')
