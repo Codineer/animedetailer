@@ -1,0 +1,53 @@
+.mystylenav {
+    position: fixed;
+    top: 80px;
+    right: 0px;
+    background-color: black;
+    bottom: 0px;
+    padding: 10px;
+    width: 200px;
+    animation-name: example;
+    animation-duration: 1.2s;
+    font-size: medium;
+}
+
+.mystylesearch {
+    position: fixed;
+    top: 70px;
+    right: 0px;
+    background-color: black;
+
+    padding: 0px;
+    width: 100%;
+    animation-name: example2;
+    animation-duration: 0.5s;
+    font-size: medium;
+}
+
+.media-ul {
+    margin-bottom: 20px;
+}
+
+
+
+
+
+@keyframes example {
+    from {
+        right: -200px;
+    }
+
+    to {
+        right: 0px;
+    }
+}
+
+@keyframes example2 {
+    from {
+        top: 0px;
+    }
+
+    to {
+        top: 70px;
+    }
+}

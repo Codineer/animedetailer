@@ -1,0 +1,287 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/added.css">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+</head>
+
+<body>
+    <nav>
+        <div id="search-icon">
+            <img src="/images/searchico.svg" alt="">
+        </div>
+        <div class="logo">
+            Utkarsh
+        </div>
+
+        <div id="menu-icon">
+            <img src="/images/menuico.svg" alt="">
+        </div>
+
+
+
+        <ul class="navbar">
+
+            <li class="navitem">
+                <a class="home-active" href="">
+                    Home
+                </a>
+            </li>
+
+
+            <li class="navitem">
+                <a href="">
+                    Mangas
+                </a>
+            </li>
+            <li class="navitem">
+                <a href="">
+                    Category
+                </a>
+            </li>
+            <li class="navitem">
+                <a href="">
+                    Popular
+                </a>
+            </li>
+        </ul>
+        <form class="search-form">
+            <div class="search">
+                <span class="material-symbols-outlined search-icon">
+                    search
+                </span>
+                <input type="search" class="search-input" placeholder="Search">
+            </div>
+        </form>
+    </nav>
+    <section class="home swiper" id="home">
+
+        <div class="swiper-wrapper ">
+
+
+
+            <% TrendingAnimes.data.map(anime=> { %>
+                <div style="display: flex;" class="swiper-slide container">
+
+                    <img src=<%=anime.attributes.posterImage.original %>>
+                    <div class="home-text">
+                        <span>
+                            <%= anime.attributes.titles.en %>
+                        </span>
+                        <h1>
+                            <%= anime.attributes.titles?.ja_jp || anime.attributes.titles?.en_jp ||
+                                anime.attributes.titles?.en_us || "Title not available" %>
+                                <br>
+                                <%= anime.attributes.ageRatingGuide %>
+                        </h1>
+                        <a href="#" class="btn">Explore</a>
+                    </div>
+                </div>
+                <% }) %>
+                    <!-- <div style="display: flex;" class="swiper-slide container">
+                        <img src="/images/image.png" alt="">
+                        <div class="home-text">
+                            <span>Marvel Universe</span>
+                            <h1>Venom: Let There <br> Be Carnages</h1>
+                            <a href="#" class="btn">Explore</a>
+                        </div>
+                    </div>
+                    <div style="display: flex;" class="swiper-slide container">
+                        <img src="/images/image.png" alt="">
+                        <div class="home-text">
+                            <span>Marvel Universe</span>
+                            <h1>Venom: Let There <br> Be Carnages</h1>
+                            <a href="#" class="btn">Book Now</a>
+
+                        </div>
+
+                    </div>
+                    <div style="display: flex;" class="swiper-slide container">
+                        <img src="/images/image.png" alt="">
+                        <div class="home-text">
+                            <span>Marvel Universe</span>
+                            <h1>Venom: Let There <br> Be Carnages</h1>
+                            <a href="#" class="btn">Explore</a>
+
+                        </div>
+                    </div> -->
+                    <div class="swiper-pagination"></div>
+        </div>
+
+    </section>
+    <section class="pop-movies" id="pop-movies">
+        <h2 class="heading">
+            Most popular
+        </h2>
+        <div class="containermov">
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+            <div class="card">
+                <img src="/images/image2.jpg" alt="">
+                <h1>
+                    Attach on titan
+                </h1>
+            </div>
+        </div>
+
+
+    </section>
+    <section class="trengen">
+        <div class="trending">
+            <h2 class="heading">
+                Trending
+            </h2>
+            <div class="anime-card">
+                <img src="/images/image2.jpg" alt="One Piece" class="anime-image">
+                <div class="anime-info">
+                    <div class="anime-title">One Piece</div>
+                    <div class="anime-stats">
+                        <span class="stat green">CC 1120</span>
+                        <span class="stat blue">🎤 1096</span>
+                        <span class="stat type">• TV</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="Top-airing">
+            <h2 class="heading">
+                Favourite
+            </h2>
+            <div class="anime-card">
+                <img src="/images/image2.jpg" alt="One Piece" class="anime-image">
+                <div class="anime-info">
+                    <div class="anime-title">One Piece</div>
+                    <div class="anime-stats">
+                        <span class="stat green">CC 1120</span>
+                        <span class="stat blue">🎤 1096</span>
+                        <span class="stat type">• TV</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="genre">
+            <h2 class="heading">
+                Genre
+            </h2>
+            <div class="genre-card">
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+                <div class="genre-tag">action</div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="/javascript/main.js"></script>
+
+</body>
+
+</html>
