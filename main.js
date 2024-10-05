@@ -2,7 +2,10 @@ import express from 'express'
 import path from 'path';
 import { fileURLToPath } from 'url';
 import router from './routes/anime/anime.js';
+import KitsuApi from 'kitsu-json-api';
 
+// Pagination is supported via limit and offset
+let kitsuApi = new KitsuApi();
 const app = express()
 app.set('view engine', 'ejs');
 const port = 3000
@@ -24,7 +27,39 @@ app.get('/', async (req, res) => {
     const genres = await data4.json()
     res.render('index', { TrendingAnimes, PopularAnimes, favoritesAnimes, genres })
 })
+
+app.get('/search', async (req, res) => {
+    if (!req.query.keyword) {
+        res.render('not-found')
+        return
+
+    }
+    //make a function of this
+    let resp = await kitsuApi
+        .query('anime') // anime category
+        .filter([
+            //use for loop here 
+            {
+                key: 'season',
+                value: ['winter', 'spring'] // filter by winter and spring
+            },
+            {
+                key: 'seasonYear',  // filter by year 2017
+                value: ['2017']
+            }
+        ])
+        .paginationLimit(5) // set limit
+        .paginationOffset(0).execute();
+    console.log(typeof (resp))
+    // const data1 = await fetch(`https://kitsu.io/api/edge/anime?filter[text]=${req.query.keyword}?page[limit]=5&page[offset]=0`)
+    const SearchResults = JSON.parse(resp);
+
+    res.json(SearchResults)
+})
+
 app.get('/index', (req, res) => {
+
+    console.log(req.query)
     res.send('ss')
 })
 

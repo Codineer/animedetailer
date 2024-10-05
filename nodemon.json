@@ -1,0 +1,9 @@
+{
+    "watch": [
+        "./",
+        "./**/*",
+        "./public/**/*.{js,css}"
+    ],
+    "ext": "js json",
+    "exec": "node main.js"
+}
