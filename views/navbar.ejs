@@ -37,12 +37,23 @@
             </a>
         </li>
     </ul>
-    <form class="search-form">
+    <form class="search-form" onsubmit="redirectToSearchPage(event)">
         <div class="search">
             <span class="material-symbols-outlined search-icon">
                 search
             </span>
-            <input type="search" class="search-input" placeholder="Search">
+            <input type="search" class="search-input" id="searchQuery" placeholder="Search">
         </div>
     </form>
 </nav>
+<script>
+    function redirectToSearchPage(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get the search query
+        const searchQuery = document.getElementById('searchQuery').value;
+
+        // Redirect to the search results page with the query as a URL parameter
+        window.location.href = `/search?keyword=${encodeURIComponent(searchQuery)}`;
+    }
+</script>

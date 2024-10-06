@@ -35,26 +35,37 @@ app.get('/search', async (req, res) => {
 
     }
     //make a function of this
+    // let resp = await kitsuApi
+    //     .query('anime') // anime category
+    //     .filter([
+    //         //use for loop here 
+    //         {
+    //             key: 'season',
+    //             value: ['winter', 'spring'] // filter by winter and spring
+    //         },
+    //         {
+    //             key: 'seasonYear',  // filter by year 2017
+    //             value: ['2017']
+    //         }
+    //     ])
+    //     .paginationLimit(5) // set limit
+    //     .paginationOffset(0).execute();
+
+
     let resp = await kitsuApi
-        .query('anime') // anime category
+        .query('anime')
         .filter([
-            //use for loop here 
             {
-                key: 'season',
-                value: ['winter', 'spring'] // filter by winter and spring
+                key: 'text',
+                value: [req.query.keyword,]
             },
-            {
-                key: 'seasonYear',  // filter by year 2017
-                value: ['2017']
-            }
+
         ])
-        .paginationLimit(5) // set limit
+        .paginationLimit(5)
         .paginationOffset(0).execute();
-    console.log(typeof (resp))
-    // const data1 = await fetch(`https://kitsu.io/api/edge/anime?filter[text]=${req.query.keyword}?page[limit]=5&page[offset]=0`)
     const SearchResults = JSON.parse(resp);
 
-    res.json(SearchResults)
+    res.render('search-results', { SearchResults })
 })
 
 app.get('/index', (req, res) => {

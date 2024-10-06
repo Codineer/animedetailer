@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/searchp.css">
+    <link rel="stylesheet" href="/stylesheets/added.css">
+    <!-- boxicons -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"> -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+</head>
+
+<body>
+    <%- include('navbar');%>
+        <h1 class="search-resuts-heading">Search Results</h1>
+        <div class="search-results">
+            <% SearchResults.data.map(anime=> { %>
+                <div class="card search-card">
+                    <div class="card-img-div">
+                        <img src=<%=anime.attributes.posterImage?.original || anime.attributes.coverImage?.original %>>
+                        <div class="card-avg-rating">
+                            <%= Math.floor(anime.attributes.averageRating) || 'N/A' %>
+                        </div>
+                    </div>
+
+                    <div class="card-age-rating">
+                        <%= anime.attributes.ageRatingGuide %>
+                    </div>
+                    <!-- add javascript funtion to convert float to int -->
+                    <h1>
+                        <%= anime.attributes.titles?.en || anime.attributes.titles?.en_us ||
+                            anime.attributes.titles?.en_jp || anime.attributes.titles?.ja_jp || 'N/A' %>
+                    </h1>
+                    <div class="ani-type-epi">
+                        <%= anime.attributes?.showType || 'N/A' %> &sdot; <%= anime.attributes?.episodeCount || 'N/A' %>
+                                ep
+                    </div>
+                </div>
+                <% }) %>
+
+
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="/javascript/main.js">
+
+        </script>
+
+</body>
+
+</html>
