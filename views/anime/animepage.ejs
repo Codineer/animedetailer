@@ -20,113 +20,112 @@
     <%- include('../navbar');%>
 
         <div class="anime-page">
-            <h1 class="anime-page-heading">Suzume no Tojimari</h1>
+            <h1 class="anime-page-heading">
+                <%= animedata.data.attributes.titles.en %>
+            </h1>
             <div class="anime-main">
-                <img class="anime-main-img" src="suzume.jpg" alt="">
+                <img class="anime-main-img" src="<%= animedata.data.attributes.posterImage.large %>" alt="">
                 <p class="anime-main-synopsis">
-                    The story follows Suzume, a 17-year-old girl from a quiet Kyushu town who meets a young man looking
-                    for
-                    a door. They find a door within ruins in the mountain, and Suzume opens it. Soon, more doors begin
-                    to
-                    open around Japan, bringing disasters from the other side. The film depicts Suzume's liberation and
-                    growth, as she closes the doors that are causing disaster.
+                    <%= animedata.data.attributes.synopsis %>
                 </p>
             </div>
+
+            <div class="episode-details">
+                <div class="episode-info">
+                    <p><strong>Episode Count:</strong>
+                        <%= animedata.data.attributes.episodeCount %>
+                    </p>
+
+                    <ul>
+                        <li><strong>English:</strong>
+                            <%= animedata.data.attributes.titles.en %>
+                        </li>
+                        <li><strong>English (JP):</strong>
+                            <%= animedata.data.attributes.titles.en_jp %>
+                        </li>
+                        <li><strong>English (US):</strong>
+                            <%= animedata.data.attributes.titles.en_us %>
+                        </li>
+                        <li><strong>Japanese:</strong>
+                            <%= animedata.data.attributes.titles.ja_jp %>
+                        </li>
+                    </ul>
+                    <p><strong>Average Rating:</strong>
+                        <%= animedata.data.attributes.averageRating %>
+                    </p>
+                    <p><strong>Start Date:</strong>
+                        <%= animedata.data.attributes.startDate %>
+                    </p>
+                    <p><strong>End Date:</strong>
+                        <%= animedata.data.attributes.endDate %>
+                    </p>
+                    <p><strong>Age Rating:</strong>
+                        <%= animedata.data.attributes.ageRating %>
+                    </p>
+                    <p><strong>Age Rating Guide:</strong>
+                        <%= animedata.data.attributes.ageRatingGuide %>
+                    </p>
+                    <p><strong>Showtype:</strong>
+                        <%= animedata.data.attributes.subtype %>
+                    </p>
+                    <p><strong>Status:</strong>
+                        <%= animedata.data.attributes.status %>
+                    </p>
+                </div>
+            </div>
+
+
             <div class="ani-video">
 
-                <iframe class="ani-iframe" src="https://www.youtube.com/embed/FVU0zESXS5c" title="YouTube video player"
-                    frameborder="0"
+                <iframe class="ani-iframe"
+                    src="https://www.youtube.com/embed/<%= animedata.data.attributes.youtubeVideoId%>"
+                    title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
-            <div class="episodes-list">
-                <h1 class="episodes-list-heading">List of episodes</h1>
-                <div class="episodes-collection">
-                    <div class="episode">
-                        <div class="episode-heading">
-                            <h1>episode 1</h1>
-                            <img class="episode-dropdown" width="20px" height="20px" src="/images/downarrow.svg" alt="">
-                        </div>
-                        <hr>
-                        <p class="episode-description">
-                            lorem2
-                        </p>
-                        <hr>
 
-                    </div>
 
-                </div>
-            </div>
+
+
             <div class="characters-section">
                 <h1 class="anime-characters-heading">
                     Characters
                 </h1>
                 <div class="character-collection">
-                    <div class="char-card">
-                        <img width="130px" height="150px"
-                            src="https://media.kitsu.app/characters/images/7516/original.jpg" alt="">
-                        <p>Akisu's Father</p>
-                    </div>
-                    <div class="char-card">
-                        <img width="130px" height="150px"
-                            src="https://media.kitsu.app/characters/images/7516/original.jpg" alt="">
-                        <p>Akisu's Father</p>
-                    </div>
-                    <div class="char-card">
-                        <img width="130px" height="150px"
-                            src="https://media.kitsu.app/characters/images/7516/original.jpg" alt="">
-                        <p>Akisu's Father</p>
-                    </div>
-                    <div class="char-card">
-                        <img width="130px" height="150px"
-                            src="https://media.kitsu.app/characters/images/7516/original.jpg" alt="">
-                        <p>Akisu's Father</p>
-                    </div>
+                    <% animeCharacters.map(character=> { %>
+                        <div class="char-card">
+                            <img width="130px" height="150px"
+                                src="<%= character.data.attributes.image?.original || character.data.attributes.image?.small ||  character.data.attributes.image?.large  || character.data.attributes.image?.tiny  %>"
+                                alt="<%= character.data.attributes.name %>">
+                            <p>
+                                <%= character.data.attributes.name %>
+                            </p>
+                        </div>
+                        <% }) %>
                 </div>
             </div>
+            <div class="more-content content">
+                <h2>More Content</h2>
 
-            <div class="reviews">
-                <p>Attack on titan (Shingeki no Kyojin), ceptional addition to the Action genre of anime.  The story
-                    follows
-                    a
-                    young boy named Eren Jaeger, and his sister Mikasa Ackerman and their childhood friend Armin Alrart.
-                    Humanity, having been forced to live behind great walls, is attacked by their greatest threat, the
-                    Titans.
-                    Eren vows revenge against these powerful foes and takes action, joining the military in hopes that
-                    he
-                    can
-                    learn to combat this threat and unite the people of humanity once again.<b></b></p>
-                <p><b>Sound -  </b>Attack on Titan offers a absolutely amazing soundtrack, and spectacular use of audio
-                    throughout the entire series. The sounds created by the titans emphasize their pure power and giant
-                    size
-                    in
-                    a great way.</p>
-                <p><b>Animation - </b>Animation is very solid here. Again I cannot emphasize enough how well made this
-                    anime
-                    is.
-                    The scale of the giants is done amazingly well and makes you feel like you yourself are in the shoes
-                    of
-                    the
-                    characters.</p>
-                <p><b>Characters - </b>The characters are well rounded, and expressed in very thoughtful ways. Each of
-                    the
-                    characters is introduced to the watcher and you are able to draw your own conclusions about each of
-                    them.
-                </p>
-                <p><b>Story</b> - The story this anime brings to the table is a powerful one. Though it may seem simple
-                    at
-                    the
-                    surface, it is a psychological roller coaster and will bring about a lot of feelings both good and
-                    bad.
-                    While some parts may be hard to watch, others make it more than worth the wait.</p>
-                <p>Attack on Titan is one of the finest anime I've ever had the joy of watching. It is powerful, and
-                    will
-                    leave
-                    you breathless time after time. If you're a fan of the action genre or powerful themes, Do not let
-                    Shingeki
-                    no Kyojin pass you by.</p>
+                <dl>
+                    <!-- Plot section -->
+                    <a href="<%= animedata.data.relationships.episodes.links.self %>">
+                        <dt>1. Episodes</dt>
+                    </a>
+                    <a href="<%= animedata.data.relationships.genres.links.self %>">
+                        <dd>2. Genres</dd>
+                    </a>
+                    <a href="<%= animedata.data.relationships.categories.links.self %>">
+                        <dt>3. Categories</dt>
+                    </a>
+                    <a href="<%= animedata.data.relationships.categories.links.self %>">
+                        <dt>3. reviews</dt>
+                    </a>
+                </dl>
             </div>
+
         </div>
+
 
         <script src="/javascript/main.js"></script>
         <script src="/javascript/anime.js"></script>

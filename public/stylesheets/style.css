@@ -54,9 +54,13 @@ nav {
     justify-content: space-between;
     padding: 20px 100px;
     transition: 0.5;
-    background-color: var(--bg-color);
+    /* background-color: var(--bg-color); */
     /* opacity: 0.3; */
     /* background: blac */
+}
+
+a {
+    color: var(--text-color);
 }
 
 nav ul {

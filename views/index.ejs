@@ -38,7 +38,7 @@
                                     <br>
                                     <%= anime.attributes.ageRatingGuide %>
                             </h1>
-                            <a href="#" class="btn">Explore</a>
+                            <a href="/anime/<%=anime.id %>" class="btn">Explore</a>
                         </div>
                     </div>
                     <% }) %>
@@ -52,12 +52,15 @@
             </h2>
             <div class="containermov">
                 <% PopularAnimes.data.map(anime=> { %>
-                    <div class="card">
-                        <img src=<%=anime.attributes.posterImage.original %> alt="">
-                        <h1>
-                            <%= anime.attributes.titles.en %>
-                        </h1>
-                    </div>
+                    <a href="/anime/<%=anime.id %>">
+                        <div class="card">
+                            <img src=<%=anime.attributes.posterImage.original %> alt="">
+                            <h1>
+                                <%= anime.attributes.titles.en %>
+                            </h1>
+                        </div>
+
+                    </a>
                     <% }) %>
 
             </div>
@@ -70,19 +73,22 @@
                     Trending
                 </h2>
                 <% TrendingAnimes.data.map(anime=> { %>
-                    <div class="anime-card">
-                        <img class="anime-image" src=<%=anime.attributes.posterImage.small %> >
-                        <div class="anime-info">
-                            <div class="anime-title">
-                                <%= anime.attributes.titles.en %>
-                            </div>
-                            <div class="anime-stats">
-                                <span class="stat green">CC 1120</span>
-                                <span class="stat blue">🎤 1096</span>
-                                <span class="stat type">• TV</span>
+                    <a href="/anime/<%=anime.id %>">
+
+                        <div class="anime-card">
+                            <img class="anime-image" src=<%=anime.attributes.posterImage.small %> >
+                            <div class="anime-info">
+                                <div class="anime-title">
+                                    <%= anime.attributes.titles.en %>
+                                </div>
+                                <div class="anime-stats">
+                                    <span class="stat green">CC 1120</span>
+                                    <span class="stat blue">🎤 1096</span>
+                                    <span class="stat type">• TV</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <% }) %>
 
 
@@ -93,19 +99,22 @@
                     Favourite
                 </h2>
                 <% favoritesAnimes.data.map(anime=> { %>
-                    <div class="anime-card">
-                        <img class="anime-image" src=<%=anime.attributes.posterImage.small %> >
-                        <div class="anime-info">
-                            <div class="anime-title">
-                                <%= anime.attributes.titles.en %>
-                            </div>
-                            <div class="anime-stats">
-                                <span class="stat green">CC 1120</span>
-                                <span class="stat blue">🎤 1096</span>
-                                <span class="stat type">• TV</span>
+                    <a href="/anime/<%=anime.id %>">
+                        <div class="anime-card">
+                            <img class="anime-image" src=<%=anime.attributes.posterImage.small %> >
+                            <div class="anime-info">
+                                <div class="anime-title">
+
+                                    <%= anime.attributes.titles.en %>
+                                </div>
+                                <div class="anime-stats">
+                                    <span class="stat green">CC 1120</span>
+                                    <span class="stat blue">🎤 1096</span>
+                                    <span class="stat type">• TV</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <% }) %>
 
 
