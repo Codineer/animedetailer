@@ -64,4 +64,51 @@
     text-align: center;
 }
 
-.anime-character-container {}
+.character-collection {
+    margin: 10px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.char-card {
+    position: relative;
+}
+
+.char-card p {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 13px;
+    padding: 10px;
+}
+
+.episodes-list-heading {
+    font-size: large;
+    text-align: center;
+}
+
+.episode-heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.episode-heading h1 {
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.episodes-collection {
+    margin: 10px 0px;
+}
+
+.episode hr {
+    height: 1px;
+}
+
+.episode-description {
+    display: none;
+}
