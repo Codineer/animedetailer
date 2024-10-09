@@ -109,7 +109,7 @@
 
                 <dl>
                     <!-- Plot section -->
-                    <a href="<%= animedata.data.relationships.episodes.links.self %>">
+                    <a href="/anime/episodes/<%= animedata.data.id %>?name=<%= animedata.data.attributes.titles.en %>">
                         <dt>1. Episodes</dt>
                     </a>
                     <a href="<%= animedata.data.relationships.genres.links.self %>">

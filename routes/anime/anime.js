@@ -15,7 +15,7 @@ router.get('/:slug', async (req, res) => {
     animech = await animech.json()
 
     let animeCharacters = []
-    console.log(animedata)
+
     for (const ch of animech.data) {
         try {
             let character = await fetch(ch.relationships.character.links.related)
@@ -31,6 +31,20 @@ router.get('/:slug', async (req, res) => {
 
 
     res.render('anime/animepage', { animedata, animeCharacters })
+})
+router.get('/episodes/:slug', async (req, res) => {
+
+
+    let resp = await fetch(`https://kitsu.io/api/edge/anime/${req.params.slug}/relationships/episodes`)
+    let episodes = await resp.json()
+    res.render('anime/episodes', { episodes, name: req.query.name })
+})
+router.get('/episodes/episode/:slug', async (req, res) => {
+
+    let resp = await fetch(`https://kitsu.io/api/edge/episodes/${req.params.slug}`)
+    let episode = await resp.json()
+    console.log(episode)
+    res.render('anime/episode', { episode })
 })
 
 export default router

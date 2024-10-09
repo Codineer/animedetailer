@@ -1,0 +1,61 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/added.css">
+
+    <style>
+        .episodesPage {
+            margin-top: 100px;
+            padding: 0px 25px;
+
+        }
+
+        .epcard {
+            background: var(--main-color);
+            color: white;
+            width: auto;
+            border-radius: 10px;
+            padding: 5px;
+
+        }
+
+        .episodes {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('../navbar');%>
+
+        <div class="episodesPage">
+            <h1>
+                <%= name %>
+            </h1>
+            <div class="episodes">
+                <% episodes.data.map((episode, index)=> { %>
+                    <a href="episode/<%=episode.id%>">
+                        <div class="epcard">
+                            episode <%=index+1 %>
+                        </div>
+                    </a>
+                    <% }) %>
+            </div>
+
+        </div>
+
+        <script src="/javascript/main.js"></script>
+        <script src="/javascript/anime.js"></script>
+
+</body>
+
+</html>

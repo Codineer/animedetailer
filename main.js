@@ -16,6 +16,7 @@ app.use(express.static('public'))
 app.use('/anime', router)
 
 app.get('/', async (req, res) => {
+    console.log('hii anshu')
     const data1 = await fetch('https://kitsu.io/api/edge/trending/anime')
     const data2 = await fetch('https://kitsu.io/api/edge/anime?sort=-userCount')
     const data3 = await fetch('https://kitsu.io/api/edge/anime?sort=-favoritesCount')

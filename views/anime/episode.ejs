@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/added.css">
+
+    <style>
+        .episodePage {
+            margin-top: 100px;
+            padding: 0px 25px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('../navbar');%>
+
+        <div class="episodePage">
+            <%=episode.data.attributes.synopsis %>
+
+        </div>
+
+        <script src="/javascript/main.js"></script>
+        <script src="/javascript/anime.js"></script>
+
+</body>
+
+</html>
