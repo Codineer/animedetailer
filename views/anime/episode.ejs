@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Episode Details</title>
 
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/added.css">
@@ -14,17 +14,74 @@
         .episodePage {
             margin-top: 100px;
             padding: 0px 25px;
+        }
 
+        .epiImg {
+            margin: auto;
+            width: 300px;
+            height: 200px;
+        }
+
+        .epiImg img {
+            width: 100%;
+        }
+
+        .synopsis {
+            margin-top: 20px;
+        }
+
+        .episode-details {
+            margin-top: 20px;
+        }
+
+        .episode-info strong {
+            color: red;
         }
     </style>
 </head>
 
 <body>
-    <%- include('../navbar');%>
+    <%- include('../navbar'); %>
 
         <div class="episodePage">
-            <%=episode.data.attributes.synopsis %>
+            <div>
+                <h1>
+                    <%= episode.data.attributes.titles?.en || episode.data.attributes.titles?.en_us ||
+                        episode.data.attributes.titles?.en_jp || "Title not available" %>
+                </h1>
+                <p>
+                    <%= episode.data.attributes.titles?.ja_jp || "Japanese title not available" %>
+                </p>
+            </div>
+            <div class="epiImg">
+                <img src="<%= episode.data.attributes.thumbnail?.original || '/path-to-placeholder-image.jpg' %>"
+                    alt="Episode thumbnail">
+            </div>
+            <div class="synopsis">
+                <p>
+                    <%= episode.data.attributes.synopsis || "Synopsis not available" %>
+                </p>
+            </div>
+            <div class="episode-details">
+                <div class="episode-info">
 
+                    <ul>
+                        <li><strong>Airdate:</strong>
+                            <%= episode.data.attributes.airdate %>
+                        </li>
+                        <li><strong>length:</strong>
+                            <%= episode.data.attributes.length %>mins
+                        </li>
+                        <li><strong>episode:</strong>
+                            <%= episode.data.attributes.seasonNumber%>
+                        </li>
+                        <li><strong>season:</strong>
+                            <%= episode.data.attributes.seasonNumber %>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
         </div>
 
         <script src="/javascript/main.js"></script>

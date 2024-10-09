@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episode Details</title>
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/added.css">
+
+    <style>
+        .characterPage {
+            margin-top: 100px;
+            padding: 0px 25px;
+        }
+
+        .characterImg {
+            float: left;
+            height: 150px;
+            width: 110px;
+            margin: 10px 10px 10px 0px;
+        }
+
+        .chardesc {
+            font-size: small;
+        }
+
+        .char-page-heading {
+            font-size: larger;
+        }
+
+        .heading {
+            margin: 0px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            font-size: medium;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('../navbar'); %>
+        <div class="characterPage">
+            <div class="heading">
+                <h1 class="char-page-heading">
+                    <%= character.data.attributes?.names?.en || character.data.attributes?.name %>
+                </h1>
+                <p>
+                    <%= character.data.attributes?.names?.ja_jp || character.data.attributes?.names?.en_jp%>
+                </p>
+            </div>
+
+            <div class="chardesc">
+                <img src="<%= character.data.attributes.image.original %>" alt="" class="characterImg">
+                <%= character.data.attributes.description %>
+            </div>
+
+        </div>
+        <script src="/javascript/main.js"></script>
+        <script src="/javascript/anime.js"></script>
+
+</body>
+
+</html>

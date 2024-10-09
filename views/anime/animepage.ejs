@@ -93,14 +93,18 @@
                 </h1>
                 <div class="character-collection">
                     <% animeCharacters.map(character=> { %>
-                        <div class="char-card">
-                            <img width="130px" height="150px"
-                                src="<%= character.data.attributes.image?.original || character.data.attributes.image?.small ||  character.data.attributes.image?.large  || character.data.attributes.image?.tiny  %>"
-                                alt="<%= character.data.attributes.name %>">
-                            <p>
-                                <%= character.data.attributes.name %>
-                            </p>
-                        </div>
+                        <a href="/anime/character/<%= character.data.id %>">
+
+                            <div class="char-card">
+                                <img width="130px" height="150px"
+                                    src="<%= character.data.attributes.image?.original || character.data.attributes.image?.small ||  character.data.attributes.image?.large  || character.data.attributes.image?.tiny  %>"
+                                    alt="<%= character.data.attributes.name %>">
+                                <p>
+                                    <%= character.data.attributes.name %>
+                                </p>
+                            </div>
+
+                        </a>
                         <% }) %>
                 </div>
             </div>

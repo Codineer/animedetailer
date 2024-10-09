@@ -1,10 +1,7 @@
 import { Router } from "express";
-import KitsuApi from 'kitsu-json-api';
-let kitsuApi = new KitsuApi();
 const router = Router()
 
 router.get('/:slug', async (req, res) => {
-
 
     let resp = await fetch(`https://kitsu.io/api/edge/anime/${req.params.slug}`)
     let animedata = await resp.json()
@@ -43,8 +40,15 @@ router.get('/episodes/episode/:slug', async (req, res) => {
 
     let resp = await fetch(`https://kitsu.io/api/edge/episodes/${req.params.slug}`)
     let episode = await resp.json()
-    console.log(episode)
+
     res.render('anime/episode', { episode })
+})
+router.get('/character/:slug', async (req, res) => {
+
+    let resp = await fetch(`https://kitsu.io/api/edge/characters/${req.params.slug}`)
+    let character = await resp.json()
+
+    res.render('anime/character', { character })
 })
 
 export default router
