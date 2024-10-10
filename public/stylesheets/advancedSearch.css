@@ -1,0 +1,56 @@
+     :root {
+
+
+         --main-color: #ff2c1f;
+         --text-color: white;
+         --bg-color: black;
+         --heading-color: black
+     }
+
+     .filterPage {
+         margin-top: 100px;
+         padding: 0px 25px;
+     }
+
+     .fPageHeading {
+         color: white;
+         font-size: medium;
+         font-weight: 500;
+     }
+
+     .fHeading {
+         color: white;
+         font-size: small;
+         margin-top: 10px;
+         margin-bottom: 5px;
+     }
+
+     .options {
+         border: 1px solid var(--main-color);
+         padding: 5px 8px;
+         border-radius: 10px;
+         background-color: transparent;
+         color: var(--text-color);
+         margin-right: 10px;
+         margin-bottom: 10px;
+     }
+
+     #date-dropdown {
+         border: 1px solid var(--text-color);
+         padding: 5px;
+
+         border-radius: 10px;
+         background-color: transparent;
+         color: var(--main-color);
+     }
+
+     .search-ok {
+         margin-top: 10px;
+     }
+
+     .search-box-advanced {
+         margin-bottom: 20px;
+         border: 2px solid var(--main-color);
+         padding: 10px;
+         width: 100%;
+     }

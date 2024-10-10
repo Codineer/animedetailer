@@ -7,6 +7,10 @@
     --heading-color: black
 }
 
+.searchPage {
+    margin-left: 60px;
+}
+
 .search-resuts-heading {
     margin-top: 100px;
     margin-left: 60px;

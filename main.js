@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import router from './routes/anime/anime.js';
 import KitsuApi from 'kitsu-json-api';
 
-// Pagination is supported via limit and offset
+
 let kitsuApi = new KitsuApi();
 const app = express()
 app.set('view engine', 'ejs');
@@ -30,11 +30,11 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/search', async (req, res) => {
-    if (!req.query.keyword) {
-        res.render('not-found')
-        return
+    // if (!req.query?.filter?.text) {
+    //     res.render('not-found')
+    //     return
 
-    }
+    // }
     //make a function of this
     // let resp = await kitsuApi
     //     .query('anime') // anime category
@@ -51,24 +51,73 @@ app.get('/search', async (req, res) => {
     //     ])
     //     .paginationLimit(5) // set limit
     //     .paginationOffset(0).execute();
+    console.log(req.query['filter'])
+    const genres = {
+        data: [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Drama",
+            "Sci-Fi",
+            "Space",
+            "Mystery",
+            "Magic",
+            "Supernatural",
+            "Police"
+        ]
+    }
+    let master = []
+    for (const i in req.query.filter) {
+        const key = i
+        const value = req.query.filter[i]
+        if (typeof (value) == 'string') {
+            master.push({
+                key: key,
+                value: [value]
+            })
+        } else if (Array.isArray(value)) {
+            master.push({ key: key, value: value })
+        }
+    }
+
+    try {
+        let resp = await kitsuApi
+            .query('anime')
+            .filter(master)
+            .paginationLimit(5)
+            .paginationOffset(0).execute();
+        const SearchResults = JSON.parse(resp);
+        res.render('search-results', { SearchResults, genres, searchQuery: req.query?.filter?.text ? req.query?.filter?.text : "" })
+
+    } catch (e) {
+        console.log(e.message)
+        console.log(e)
+        res.render('not-found')
+    }
 
 
-    let resp = await kitsuApi
-        .query('anime')
-        .filter([
-            {
-                key: 'text',
-                value: [req.query.keyword,]
-            },
 
-        ])
-        .paginationLimit(5)
-        .paginationOffset(0).execute();
-    const SearchResults = JSON.parse(resp);
-
-    res.render('search-results', { SearchResults })
 })
 
+app.get('/filter', async (req, res) => {
+    let genres = {
+        data:
+            [
+                "Action",
+                "Adventure",
+                "Comedy",
+                "Drama",
+                "Sci-Fi",
+                "Space",
+                "Mystery",
+                "Magic",
+                "Supernatural",
+                "Police"
+            ]
+    }
+
+    res.render('advanced-search', { genres })
+})
 app.get('/index', (req, res) => {
 
     console.log(req.query)
