@@ -123,7 +123,10 @@
                 <div class="genre-card">
                     <% genres.data.map(genre=> { %>
                         <div class="genre-tag">
-                            <%= genre.attributes.name %>
+                            <a href="/anime/genre/<%= genre.attributes.name %>">
+                                <%= genre.attributes.name %>
+
+                            </a>
                         </div>
 
                         <% }) %>

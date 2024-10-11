@@ -80,39 +80,40 @@
             <button class="search-ok btn" onclick="searchAdvanced()">
                 Search
             </button>
-            <div class="search-results">
-                <% SearchResults.data.map(anime=> { %>
-                    <a href="/anime/<%=anime.id %>">
+        </div>
+        <div class="search-results">
+            <% SearchResults.data.map(anime=> { %>
+                <a href="/anime/<%=anime.id %>">
 
-                        <div class="card search-card">
-                            <div class="card-img-div">
-                                <img src=<%=anime.attributes.posterImage?.original ||
-                                    anime.attributes.coverImage?.original %>>
-                                <div class="card-avg-rating">
-                                    <%= Math.floor(anime.attributes.averageRating) || 'N/A' %>
-                                </div>
-                            </div>
-
-                            <div class="card-age-rating">
-                                <%= anime.attributes.ageRatingGuide %>
-                            </div>
-                            <!-- add javascript funtion to convert float to int -->
-                            <h1>
-                                <%= anime.attributes.titles?.en || anime.attributes.titles?.en_us ||
-                                    anime.attributes.titles?.en_jp || anime.attributes.titles?.ja_jp || 'N/A' %>
-                            </h1>
-                            <div class="ani-type-epi">
-                                <%= anime.attributes?.showType || 'N/A' %> &sdot; <%= anime.attributes?.episodeCount
-                                        || 'N/A' %>
-                                        ep
+                    <div class="card search-card">
+                        <div class="card-img-div">
+                            <img src=<%=anime.attributes.posterImage?.original || anime.attributes.coverImage?.original
+                                %>>
+                            <div class="card-avg-rating">
+                                <%= Math.floor(anime.attributes.averageRating) || 'N/A' %>
                             </div>
                         </div>
-                    </a>
-                    <% }) %>
+
+                        <div class="card-age-rating">
+                            <%= anime.attributes.ageRatingGuide %>
+                        </div>
+                        <!-- add javascript funtion to convert float to int -->
+                        <h1>
+                            <%= anime.attributes.titles?.en || anime.attributes.titles?.en_us ||
+                                anime.attributes.titles?.en_jp || anime.attributes.titles?.ja_jp || 'N/A' %>
+                        </h1>
+                        <div class="ani-type-epi">
+                            <%= anime.attributes?.showType || 'N/A' %> &sdot; <%= anime.attributes?.episodeCount
+                                    || 'N/A' %>
+                                    ep
+                        </div>
+                    </div>
+                </a>
+                <% }) %>
 
 
 
-            </div>
+
         </div>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script src="/javascript/main.js">

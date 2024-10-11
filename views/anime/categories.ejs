@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/added.css">
+
+    <style>
+        .categoriessPage {
+            margin-top: 100px;
+            padding: 0px 25px;
+
+        }
+
+        .catcard {
+            background: var(--main-color);
+            color: white;
+            width: auto;
+            border-radius: 10px;
+            padding: 5px;
+
+        }
+
+        .categories {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('../navbar');%>
+
+        <div class="categoriessPage ">
+            <h1 style="margin-bottom: 10px;">
+                Categories
+            </h1>
+            <div class="categories">
+                <% categories.data.map((category, index)=> { %>
+
+                    <a href="">
+                        <div class="catcard">
+                            <%=category.attributes.title %>
+                        </div>
+                    </a>
+                    <% }) %>
+            </div>
+
+        </div>
+
+        <script src="/javascript/main.js"></script>
+        <script src="/javascript/anime.js"></script>
+
+</body>
+
+</html>
