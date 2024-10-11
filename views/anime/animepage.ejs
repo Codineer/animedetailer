@@ -29,7 +29,13 @@
                     <%= animedata.data.attributes.synopsis %>
                 </p>
             </div>
-
+            <div class="streamingServices">
+                <% streamingServices.map(service=> { %>
+                    <a target="_blank" href="<%= service.url %>">
+                        <img width="60px" src="/images/streamers/<%= service.image %>" alt="">
+                    </a>
+                    <% }) %>
+            </div>
             <div class="episode-details">
                 <div class="episode-info">
                     <p><strong>Episode Count:</strong>

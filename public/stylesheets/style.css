@@ -89,8 +89,7 @@ nav ul a::after {
     background-color: var(--main-color);
 }
 
-nav ul a:hover::after,
-nav ul .home-active::after {
+nav ul a:hover::after {
     width: 100%;
 }
 
@@ -114,7 +113,7 @@ nav ul .home-active::after {
     background: #f6f6f6;
     transition: box-shadow 0.25;
     border: 2px solid #ff2c1f;
-    /* width: 400px; */
+
 }
 
 .search:focus-within {

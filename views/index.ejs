@@ -133,6 +133,14 @@
                 </div>
             </div>
         </section>
+        <script>
+            const styleSheet = document.styleSheets[0];
+            styleSheet.insertRule(`
+ nav ul .home-active::after {
+    width: 100%;
+}
+`, styleSheet.cssRules.length);
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
         <script src="/javascript/main.js"></script>

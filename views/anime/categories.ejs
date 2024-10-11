@@ -46,14 +46,29 @@
 
                     <a href="">
                         <div class="catcard">
-                            <%=category.attributes.title %>
+                            <a href="http://localhost:3000/anime/categories/<%=category.attributes.slug %>">
+                                <%=category.attributes.title %>
+                            </a>
                         </div>
                     </a>
                     <% }) %>
             </div>
 
         </div>
+        <script>
+            const styleSheet = document.styleSheets[0];
 
+            styleSheet.insertRule(`
+  .category-active::after {
+    width: 100%;
+  }
+`, styleSheet.cssRules.length);
+            styleSheet.insertRule(`
+ nav ul .home-active::after {
+    width: 0%;
+}
+`, styleSheet.cssRules.length);
+        </script>
         <script src="/javascript/main.js"></script>
         <script src="/javascript/anime.js"></script>
 
