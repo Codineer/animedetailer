@@ -8,6 +8,13 @@ router.get('/categories', async (req, res) => {
     res.render('anime/categories', { categories })
 
 })
+router.get('/popular', async (req, res) => {
+
+    let resp = await fetch(`https://kitsu.io/api/edge/anime?sort=-userCount`)
+    let animes = await resp.json()
+    res.render('anime/popularpage', { animes })
+
+})
 router.get('/categories/:slug', async (req, res) => {
 
     let resp = await fetch(`https://kitsu.io/api/edge/anime?filter[categories]=${req.params.slug}`)

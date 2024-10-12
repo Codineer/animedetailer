@@ -52,9 +52,9 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 100px;
+    padding: 12px 100px;
     transition: 0.5;
-    /* background-color: var(--bg-color); */
+    backdrop-filter: blur(10px);
     /* opacity: 0.3; */
     /* background: blac */
 }

@@ -36,58 +36,61 @@
                     </a>
                     <% }) %>
             </div>
-            <div class="episode-details">
-                <div class="episode-info">
-                    <p><strong>Episode Count:</strong>
-                        <%= animedata.data.attributes.episodeCount %>
-                    </p>
+            <div class="episvid">
 
-                    <ul>
-                        <li><strong>English:</strong>
-                            <%= animedata.data.attributes.titles.en %>
-                        </li>
-                        <li><strong>English (JP):</strong>
-                            <%= animedata.data.attributes.titles.en_jp %>
-                        </li>
-                        <li><strong>English (US):</strong>
-                            <%= animedata.data.attributes.titles.en_us %>
-                        </li>
-                        <li><strong>Japanese:</strong>
-                            <%= animedata.data.attributes.titles.ja_jp %>
-                        </li>
-                    </ul>
-                    <p><strong>Average Rating:</strong>
-                        <%= animedata.data.attributes.averageRating %>
-                    </p>
-                    <p><strong>Start Date:</strong>
-                        <%= animedata.data.attributes.startDate %>
-                    </p>
-                    <p><strong>End Date:</strong>
-                        <%= animedata.data.attributes.endDate %>
-                    </p>
-                    <p><strong>Age Rating:</strong>
-                        <%= animedata.data.attributes.ageRating %>
-                    </p>
-                    <p><strong>Age Rating Guide:</strong>
-                        <%= animedata.data.attributes.ageRatingGuide %>
-                    </p>
-                    <p><strong>Showtype:</strong>
-                        <%= animedata.data.attributes.subtype %>
-                    </p>
-                    <p><strong>Status:</strong>
-                        <%= animedata.data.attributes.status %>
-                    </p>
+                <div class="episode-details">
+                    <div class="episode-info">
+                        <p><strong>Episode Count:</strong>
+                            <%= animedata.data.attributes.episodeCount %>
+                        </p>
+
+                        <ul>
+                            <li><strong>English:</strong>
+                                <%= animedata.data.attributes.titles.en %>
+                            </li>
+                            <li><strong>English (JP):</strong>
+                                <%= animedata.data.attributes.titles.en_jp %>
+                            </li>
+                            <li><strong>English (US):</strong>
+                                <%= animedata.data.attributes.titles.en_us %>
+                            </li>
+                            <li><strong>Japanese:</strong>
+                                <%= animedata.data.attributes.titles.ja_jp %>
+                            </li>
+                        </ul>
+                        <p><strong>Average Rating:</strong>
+                            <%= animedata.data.attributes.averageRating %>
+                        </p>
+                        <p><strong>Start Date:</strong>
+                            <%= animedata.data.attributes.startDate %>
+                        </p>
+                        <p><strong>End Date:</strong>
+                            <%= animedata.data.attributes.endDate %>
+                        </p>
+                        <p><strong>Age Rating:</strong>
+                            <%= animedata.data.attributes.ageRating %>
+                        </p>
+                        <p><strong>Age Rating Guide:</strong>
+                            <%= animedata.data.attributes.ageRatingGuide %>
+                        </p>
+                        <p><strong>Showtype:</strong>
+                            <%= animedata.data.attributes.subtype %>
+                        </p>
+                        <p><strong>Status:</strong>
+                            <%= animedata.data.attributes.status %>
+                        </p>
+                    </div>
                 </div>
-            </div>
 
 
-            <div class="ani-video">
+                <div class="ani-video">
 
-                <iframe class="ani-iframe"
-                    src="https://www.youtube.com/embed/<%= animedata.data.attributes.youtubeVideoId%>"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe class="ani-iframe"
+                        src="https://www.youtube.com/embed/<%= animedata.data.attributes.youtubeVideoId%>"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
             </div>
 
 

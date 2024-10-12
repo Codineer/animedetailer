@@ -139,6 +139,16 @@
  nav ul .home-active::after {
     width: 100%;
 }
+
+`, styleSheet.cssRules.length);
+            styleSheet.insertRule(`
+    .category-active::after {
+    width: 0%;
+
+}
+ .popular-active::after {
+    width: 0%;
+  }
 `, styleSheet.cssRules.length);
         </script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
