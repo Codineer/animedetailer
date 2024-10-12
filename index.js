@@ -25,7 +25,7 @@ app.get('/', async (req, res) => {
     const PopularAnimes = await data2.json()
     const favoritesAnimes = await data3.json()
     const genres = await data4.json()
-    res.render('index', { TrendingAnimes, PopularAnimes, favoritesAnimes, genres })
+    res.render('index.ejs', { TrendingAnimes, PopularAnimes, favoritesAnimes, genres })
 })
 
 app.get('/search', async (req, res) => {
