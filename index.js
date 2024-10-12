@@ -7,7 +7,7 @@ import KitsuApi from 'kitsu-json-api';
 
 let kitsuApi = new KitsuApi();
 const app = express()
-
+app.set('views', './views');
 app.set('view engine', 'ejs');
 const port = 3000
 
