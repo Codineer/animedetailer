@@ -40,6 +40,10 @@ body {
     display: none;
 }
 
+.logo-img {
+    width: 150px;
+}
+
 .navicons {
     display: flex;
     flex-direction: row;
