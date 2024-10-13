@@ -3,6 +3,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import router from './routes/anime/anime.js';
 import KitsuApi from 'kitsu-json-api';
+const domain = 'https://animedetailer.onrender.com/';
+
 
 
 let kitsuApi = new KitsuApi();
@@ -26,7 +28,7 @@ app.get('/', async (req, res) => {
     const PopularAnimes = await data2.json()
     const favoritesAnimes = await data3.json()
     const genres = await data4.json()
-    res.render('index.ejs', { TrendingAnimes, PopularAnimes, favoritesAnimes, genres })
+    res.render('index.ejs', { TrendingAnimes, PopularAnimes, favoritesAnimes, genres, domain })
 })
 
 app.get('/search', async (req, res) => {
@@ -84,10 +86,10 @@ app.get('/search', async (req, res) => {
         let resp = await kitsuApi
             .query('anime')
             .filter(master)
-            .paginationLimit(5)
+            .paginationLimit(10)
             .paginationOffset(0).execute();
         const SearchResults = JSON.parse(resp);
-        res.render('search-results', { SearchResults, genres, searchQuery: req.query?.filter?.text ? req.query?.filter?.text : "" })
+        res.render('search-results', { SearchResults, genres, searchQuery: req.query?.filter?.text ? req.query?.filter?.text : "", domain })
 
     } catch (e) {
         console.log(e.message)
@@ -116,18 +118,9 @@ app.get('/filter', async (req, res) => {
             ]
     }
 
-    res.render('advanced-search', { genres })
-})
-app.get('/index', (req, res) => {
-
-    console.log(req.query)
-    res.send('ss')
+    res.render('advanced-search', { genres, domain })
 })
 
-app.get('/blog/:slug', (req, res) => {
-    console.log(req)
-    res.send(`hello ${req.params.slug}`)
-})
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })

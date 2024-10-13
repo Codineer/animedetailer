@@ -13,6 +13,10 @@
 }
 
 /* some variables*/
+body {
+    margin-bottom: 100px;
+}
+
 :root {
 
 
@@ -210,15 +214,16 @@ section {
 
 .home-text span {
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 30px;
     text-transform: uppercase;
 
 }
 
 .home-text h1 {
     color: var(--text-color);
-    font-size: 4rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 400;
     margin-bottom: 1rem;
 }
 
@@ -397,6 +402,7 @@ section {
 @media only screen and (max-width: 600px) {
     nav {
         padding: 12px 4%;
+        backdrop-filter: blur(0px);
     }
 
     #menu-icon {
@@ -409,6 +415,7 @@ section {
 
     .navbar {
         display: none;
+
     }
 
     .search-form {
@@ -473,6 +480,14 @@ section {
 
     .home-text {
         padding: 12px 30px;
+    }
+
+    .home-text span {
+        color: var(--text-color);
+        font-weight: 500;
+        font-size: 15px;
+        text-transform: uppercase;
+
     }
 
     .home-text h1 {

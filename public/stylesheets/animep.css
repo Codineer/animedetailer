@@ -271,6 +271,11 @@
         padding: 10px;
     }
 
+    .char-card img {
+        width: 150px;
+        height: 200px;
+    }
+
     .episodes-list-heading {
         font-size: large;
         text-align: center;

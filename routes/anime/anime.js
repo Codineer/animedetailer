@@ -1,25 +1,27 @@
 import { Router } from "express";
+const domain = 'https://animedetailer.onrender.com/';
+
 const router = Router()
 
 router.get('/categories', async (req, res) => {
 
     let resp = await fetch(`https://kitsu.io/api/edge/categories`)
     let categories = await resp.json()
-    res.render('anime/categories', { categories })
+    res.render('anime/categories', { categories, domain })
 
 })
 router.get('/popular', async (req, res) => {
 
     let resp = await fetch(`https://kitsu.io/api/edge/anime?sort=-userCount`)
     let animes = await resp.json()
-    res.render('anime/popularpage', { animes })
+    res.render('anime/popularpage', { animes, domain })
 
 })
 router.get('/categories/:slug', async (req, res) => {
 
     let resp = await fetch(`https://kitsu.io/api/edge/anime?filter[categories]=${req.params.slug}`)
     let animes = await resp.json()
-    res.render('anime/category', { animes, categoryName: req.query.name })
+    res.render('anime/category', { animes, categoryName: req.query.name, domain })
 
 })
 router.get('/:slug', async (req, res) => {
@@ -63,33 +65,33 @@ router.get('/:slug', async (req, res) => {
     }
 
 
-    res.render('anime/animepage', { animedata, animeCharacters, streamingServices })
+    res.render('anime/animepage', { animedata, animeCharacters, streamingServices, domain })
 })
 router.get('/episodes/:slug', async (req, res) => {
     let resp = await fetch(`https://kitsu.io/api/edge/anime/${req.params.slug}/relationships/episodes`)
     let episodes = await resp.json()
-    res.render('anime/episodes', { episodes, name: req.query.name })
+    res.render('anime/episodes', { episodes, name: req.query.name, domain })
 })
 router.get('/episodes/episode/:slug', async (req, res) => {
 
     let resp = await fetch(`https://kitsu.io/api/edge/episodes/${req.params.slug}`)
     let episode = await resp.json()
 
-    res.render('anime/episode', { episode })
+    res.render('anime/episode', { episode, domain })
 })
 router.get('/character/:slug', async (req, res) => {
 
     let resp = await fetch(`https://kitsu.io/api/edge/characters/${req.params.slug}`)
     let character = await resp.json()
 
-    res.render('anime/character', { character })
+    res.render('anime/character', { character, domain })
 })
 router.get('/genre/:slug', async (req, res) => {
 
     let resp = await fetch(`https://kitsu.io/api/edge/anime?filter[genres]=${req.params.slug}`)
     let animes = await resp.json()
 
-    res.render('anime/genrepage', { animes, genreName: req.params.slug })
+    res.render('anime/genrepage', { animes, genreName: req.params.slug, domain })
 })
 
 export default router

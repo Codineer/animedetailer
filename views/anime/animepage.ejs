@@ -21,7 +21,9 @@
 
         <div class="anime-page">
             <h1 class="anime-page-heading">
-                <%= animedata.data.attributes.titles.en %>
+                <%= animedata.data.attributes.titles?.en || animedata.data.attributes.titles?.en_us ||
+                    animedata.data.attributes.titles?.en_jp ||animedata.data.attributes.titles?.ja_jp ||
+                    animedata.data.attributes?.slug || 'N/A' %>
             </h1>
             <div class="anime-main">
                 <img class="anime-main-img" src="<%= animedata.data.attributes.posterImage.large %>" alt="">

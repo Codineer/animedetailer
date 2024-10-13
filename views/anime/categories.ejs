@@ -46,7 +46,8 @@
 
                     <a href="">
                         <div class="catcard">
-                            <a href="http://localhost:3000/anime/categories/<%=category.attributes.slug %>">
+                            <a
+                                href="<%=domain%>anime/categories/<%=category.attributes.slug %>?name=<%=category.attributes.title %>">
                                 <%=category.attributes.title %>
                             </a>
                         </div>

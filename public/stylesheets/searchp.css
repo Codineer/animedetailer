@@ -22,7 +22,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px 10px;
+    gap: 40px 10px;
 }
 
 .search-card {
@@ -53,8 +53,12 @@
 
 }
 
+.titleh1 {
+    font-size: medium;
+}
+
 .ani-type-epi {
-    font-size: 8px;
+    font-size: 12px;
     font-weight: 600;
     color: #9F9FA1;
 }
@@ -67,6 +71,12 @@
         justify-content: center;
         align-items: center;
         font-size: larger;
+    }
+
+    .ani-type-epi {
+        font-size: 8px;
+        font-weight: 600;
+        color: #9F9FA1;
     }
 
     .search-results {

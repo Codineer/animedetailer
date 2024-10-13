@@ -6,6 +6,7 @@
     bottom: 0px;
     padding: 10px;
     width: 200px;
+    height: 100vh;
     animation-name: example;
     animation-duration: 1.2s;
     font-size: medium;
