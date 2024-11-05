@@ -3,12 +3,14 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import router from './routes/anime/anime.js';
 import KitsuApi from 'kitsu-json-api';
+import helmet from 'helmet';
 const domain = 'https://animedetailer.onrender.com/';
 
 
 
 let kitsuApi = new KitsuApi();
 const app = express()
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 const port = 3000
@@ -18,12 +20,10 @@ app.use(express.static('public'))
 app.use('/anime', router)
 
 app.get('/', async (req, res) => {
-
     const data1 = await fetch('https://kitsu.io/api/edge/trending/anime')
     const data2 = await fetch('https://kitsu.io/api/edge/anime?sort=-userCount')
     const data3 = await fetch('https://kitsu.io/api/edge/anime?sort=-favoritesCount')
     const data4 = await fetch('https://kitsu.io/api/edge/genres')
-
     const TrendingAnimes = await data1.json()
     const PopularAnimes = await data2.json()
     const favoritesAnimes = await data3.json()

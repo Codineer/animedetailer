@@ -12,8 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
+    "helmet": "^8.0.0",
     "kitsu-json-api": "^1.1.7",
     "nvm": "^0.0.4"
   },
