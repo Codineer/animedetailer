@@ -13,11 +13,14 @@
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
     "helmet": "^8.0.0",
     "kitsu-json-api": "^1.1.7",
-    "nvm": "^0.0.4"
+    "mongoose": "^8.8.0",
+    "nvm": "^0.0.4",
+    "uuid": "^11.0.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"

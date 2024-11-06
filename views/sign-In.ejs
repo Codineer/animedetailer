@@ -19,11 +19,11 @@
         <form onsubmit="login(this)">
             <div class="field">
                 <label for="email"><i class='bx bxl-gmail  bx-sm'></i></label>
-                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="email" name="email" id="email" placeholder="Email" required>
             </div>
             <div class="field">
                 <label for="password"><i class='bx bxs-lock-alt bx-sm'></i></label>
-                <input type="password" name="password" id="password" placeholder="Password">
+                <input type="password" name="password" id="password" placeholder="Password" required>
             </div>
             <button type="submit" class="submit">Login</button>
         </form>
@@ -41,6 +41,23 @@
                 })
             })
         });
+
+        const form = document.querySelector('form')
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            const formData = new FormData(e.currentTarget);
+            const data = Object.fromEntries(formData.entries())
+            console.log(data)
+            const response = fetch('/auth/login', {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            }
+            )
+
+        })
     </script>
 
 </body>

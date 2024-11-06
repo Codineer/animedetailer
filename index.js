@@ -6,9 +6,20 @@ import { router as authRouter } from './routes/auth/user.js';
 import KitsuApi from 'kitsu-json-api';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv'
+import mongoose from 'mongoose';
 const domain = 'https://animedetailer.onrender.com/';
-
-
+dotenv.config();
+const uri = process.env.MONGO_URI;
+async function connectDB() {
+    try {
+        await mongoose.connect(uri);
+        console.log('Connected to MongoDB Atlas');
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error);
+    }
+}
+connectDB();
 
 let kitsuApi = new KitsuApi();
 const app = express()
