@@ -14,20 +14,24 @@
     <div class="formContainer">
         <div class="head">
             <img src="/images/logo.png" class="logoHead" alt="">
-            <div class="heading">LOG IN</div>
+            <div class="heading">SIGN UP</div>
         </div>
-        <form onsubmit="login(this)">
+        <form action="">
             <div class="field">
                 <label for="email"><i class='bx bxl-gmail  bx-sm'></i></label>
-                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="email" name="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="field">
+                <label for="name"><i class='bx bx-male bx-sm'></i> </label>
+                <input type="text" name="name" id="name" placeholder="Username" required>
             </div>
             <div class="field">
                 <label for="password"><i class='bx bxs-lock-alt bx-sm'></i></label>
-                <input type="password" name="password" id="password" placeholder="Password">
+                <input type="password" name="password" id="password" placeholder="Password" required>
             </div>
-            <button type="submit" class="submit">Login</button>
+            <button type="submit" class="submit">Register</button>
         </form>
-        <a href="/auth/register" class="registerLink">new to place?</a>
+        <a href="/auth/register" class="registerLink">already a user?</a>
     </div>
     <script>
         const fields = document.querySelectorAll('.field')
@@ -41,8 +45,24 @@
                 })
             })
         });
-    </script>
+        const form = document.querySelector('form')
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            const formData = new FormData(e.currentTarget);
+            const data = Object.fromEntries(formData.entries())
+            console.log(data)
+            const response = fetch('/auth/register', {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            }
+            )
 
+        })
+
+    </script>
 </body>
 
 </html>

@@ -2,8 +2,10 @@ import express from 'express'
 import path from 'path';
 import { fileURLToPath } from 'url';
 import router from './routes/anime/anime.js';
+import { router as authRouter } from './routes/auth/user.js';
 import KitsuApi from 'kitsu-json-api';
 import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
 const domain = 'https://animedetailer.onrender.com/';
 
 
@@ -17,7 +19,10 @@ const port = 3000
 
 
 app.use(express.static('public'))
+app.use(cookieParser())
+app.use(express.json());
 app.use('/anime', router)
+app.use('/auth', authRouter)
 
 app.get('/', async (req, res) => {
     const data1 = await fetch('https://kitsu.io/api/edge/trending/anime')
