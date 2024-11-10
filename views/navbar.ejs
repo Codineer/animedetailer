@@ -37,6 +37,12 @@
                 Popular
             </a>
         </li>
+        <li class="navitem" onclick="logout()">
+            <!-- <a href="#" onclick="logout()"> -->
+            Log Out
+            <!-- </a> -->
+
+        </li>
     </ul>
     <form class="search-form" onsubmit="redirectToSearchPage(event)">
         <div class="search">
@@ -56,5 +62,18 @@
 
         // Redirect to the search results page with the query as a URL parameter
         window.location.href = `/search?filter[text]=${encodeURIComponent(searchQuery)}`;
+    }
+    async function logout() {
+        const response = await fetch('/logout', {
+            method: "POST"
+        })
+        console.log(response)
+        if (response.ok == true) {
+            console.log("logout success")
+            window.location.replace("/")
+        }
+        else {
+            alert("something went wrong!")
+        }
     }
 </script>

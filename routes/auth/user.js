@@ -2,6 +2,7 @@ import { Router } from "express";
 import { v4 as uuid } from "uuid";
 import User from "../../models/user.models.js";
 import bcrypt from 'bcrypt'
+import { sendJsonError } from "../../services/errorJsonres.js";
 const router = Router()
 router.get('/login', async (req, res) => {
     res.render('sign-In.ejs')
@@ -15,26 +16,20 @@ router.get('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body
-        password = password.trim()
+
         const user = await User.findOne({
             email: email.trim().toLowerCase()
         });
 
         if (!user) {
             console.log("user not found")
-            res.status(404)
-            return res.json({
-                success: false,
-                message: 'Invalid Username'
-            });
+            return sendJsonError(res, 'Invalid UserName')
+
         }
         const isCorrect = await bcrypt.compare(password.trim(), user.password);
         if (!isCorrect) {
-            res.status(404)
-            return res.json({
-                success: false,
-                message: 'Invalid Password'
-            });
+            return sendJsonError(res, 'Invalid Password')
+
         }
         console.log("password correct")
         const sessionId = uuid()
@@ -47,9 +42,9 @@ router.post('/login', async (req, res) => {
         res.cookie('uid', sessionId, { httpOnly: true, expires: sessionExpiryDate })
         return res.json({ success: true, redirectUrl: "/" });
     } catch (e) {
+        console.log(e)
+        return sendJsonError(res, "something went wrong!")
 
-        res.status(404)
-        return req.json({ success: false, message: "something went wrong!" })
     }
 })
 router.post('/register', async (req, res) => {
@@ -58,8 +53,8 @@ router.post('/register', async (req, res) => {
 
         const { name, email, password } = req.body;
         if (!(5 <= password.trim().length <= 15)) {
-            res.status(404)
-            return res.json({ success: false, message: "Password should be between 5 to 15 characters" })
+            return sendJsonError(res, "Password should be between 5 to 15 characters")
+
         }
         const hashedPassword = await bcrypt.hash(password.trim(), 10);
         const sessionId = uuid()
@@ -77,8 +72,9 @@ router.post('/register', async (req, res) => {
             return res.json({ success: true, redirectUrl: "/" });
         }
         else {
-            res.status(404)
-            return res.json({ success: false, message: "Error making new user!" })
+            return sendJsonError(res, "Error making new user!")
+
+
         }
     }
     catch (e) {
@@ -100,11 +96,8 @@ router.post('/register', async (req, res) => {
             message = "something went wrong!"
         }
         console.log(message)
-        res.status(404)
-        return res.json({
-            success: false,
-            message
-        })
+        return sendJsonError(res, message)
+
     }
 
 })

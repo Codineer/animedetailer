@@ -9,6 +9,8 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv'
 import mongoose from 'mongoose';
 import { authMiddleware } from './middlewares/auth.middleware.js';
+import { sendJsonError } from './services/errorJsonres.js';
+
 const domain = 'https://animedetailer.onrender.com/';
 dotenv.config();
 const uri = process.env.MONGO_URI;
@@ -139,6 +141,20 @@ app.get('/filter', async (req, res) => {
     res.render('advanced-search', { genres, domain })
 })
 
+app.post('/logout', async (req, res, next) => {
+    try {
+        res.cookie("uid", "", { httpOnly: true, expires: new Date(Date.now() + 2000) })
+        res.status(200)
+        return res.json({ success: true })
+
+    } catch (e) {
+        console.log(e)
+        return sendJsonError(res, "something went wrong!")
+    }
+})
+app.get('/verify-email/:slug', async (req, res, next) => {
+    return res.render('email-verification.ejs')
+})
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
