@@ -3,17 +3,24 @@ import mongoose, { Schema } from "mongoose";
 const userSchema = new Schema({
     name: {
         type: String,
-        required: [true, 'name is required']
+        required: [true, 'name is required'],
+        minlength: [5, 'Name should of be minimum of 5 characters'],
+        maxlength: [15, 'Name cannot be more than 15 characters']
     },
     email: {
         type: String,
         unique: [true, "unique email is required"],
         index: true,
-        required: [true, 'email is required']
+        required: [true, 'email is required'],
+        match: [
+            /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, // Basic regex for email validation
+            'Please enter a valid email address'
+        ]
     },
     password: {
         type: String,
-        required: [true, 'password is required']
+        required: [true, 'password is required'],
+
     },
     sessionId: {
         type: String,

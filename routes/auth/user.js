@@ -15,6 +15,7 @@ router.get('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body
+        password = password.trim()
         const user = await User.findOne({
             email: email.trim().toLowerCase()
         });
@@ -27,7 +28,7 @@ router.post('/login', async (req, res) => {
                 message: 'Invalid Username'
             });
         }
-        const isCorrect = await bcrypt.compare(password, user.password);
+        const isCorrect = await bcrypt.compare(password.trim(), user.password);
         if (!isCorrect) {
             res.status(404)
             return res.json({
@@ -45,10 +46,10 @@ router.post('/login', async (req, res) => {
             })
         res.cookie('uid', sessionId, { httpOnly: true, expires: sessionExpiryDate })
         return res.json({ success: true, redirectUrl: "/" });
-    } catch (error) {
-        console.log(error.message)
+    } catch (e) {
+
         res.status(404)
-        return req.json({ success: false, message: "something went wrong" })
+        return req.json({ success: false, message: "something went wrong!" })
     }
 })
 router.post('/register', async (req, res) => {
@@ -56,7 +57,11 @@ router.post('/register', async (req, res) => {
 
 
         const { name, email, password } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
+        if (!(5 <= password.trim().length <= 15)) {
+            res.status(404)
+            return res.json({ success: false, message: "Password should be between 5 to 15 characters" })
+        }
+        const hashedPassword = await bcrypt.hash(password.trim(), 10);
         const sessionId = uuid()
         const sessionExpiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
@@ -77,11 +82,20 @@ router.post('/register', async (req, res) => {
         }
     }
     catch (e) {
+        console.log(e.message)
+
         const errorMessage = e.message
         let message;
         if (errorMessage.includes('duplicate key error collection')) {
             message = "Email already registered!"
         }
+        else if (errorMessage.includes('Please enter a valid email address')) {
+            message = "Please enter a valid email address"
+        }
+        else if (errorMessage.includes('user validation failed')) {
+            message = errorMessage
+        }
+
         else {
             message = "something went wrong!"
         }
