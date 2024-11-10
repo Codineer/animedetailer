@@ -32,8 +32,36 @@
             <button type="submit" class="submit">Register</button>
         </form>
         <a href="/auth/login" class="registerLink">already a user?</a>
+        <div class="error">
+            Error
+        </div>
     </div>
     <script>
+
+        const submitFunction = async (e) => {
+            e.preventDefault()
+            const formData = new FormData(e.currentTarget);
+            const data = Object.fromEntries(formData.entries())
+            console.log(data)
+            const response = await fetch('/auth/register', {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            }
+            )
+            if (response.ok == true) {
+                window.location.replace("/")
+            }
+            else {
+                const body = await response.json()
+                const errorDiv = document.querySelector('.error')
+                errorDiv.style.visibility = "visible"
+                errorDiv.innerHTML = body.message
+                console.log(body.message)
+            }
+        }
         const fields = document.querySelectorAll('.field')
         fields.forEach(element => {
             element.addEventListener('click', () => {
@@ -46,21 +74,8 @@
             })
         });
         const form = document.querySelector('form')
-        form.addEventListener('submit', (e) => {
-            e.preventDefault()
-            const formData = new FormData(e.currentTarget);
-            const data = Object.fromEntries(formData.entries())
-            console.log(data)
-            const response = fetch('/auth/register', {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            }
-            )
+        form.addEventListener('submit', submitFunction)
 
-        })
 
     </script>
 </body>

@@ -120,6 +120,15 @@ form {
     cursor: pointer;
 }
 
+.error {
+    border: 1px solid red;
+    border-radius: 10px;
+    width: 100%;
+    backdrop-filter: blur(3px);
+    visibility: hidden;
+    padding: 10px 5px;
+    color: red;
+}
 
 @media only screen and (max-width: 600px) {
     form {

@@ -8,6 +8,7 @@ import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv'
 import mongoose from 'mongoose';
+import { authMiddleware } from './middlewares/auth.middleware.js';
 const domain = 'https://animedetailer.onrender.com/';
 dotenv.config();
 const uri = process.env.MONGO_URI;
@@ -32,6 +33,7 @@ const port = 3000
 app.use(express.static('public'))
 app.use(cookieParser())
 app.use(express.json());
+app.use(authMiddleware)
 app.use('/anime', router)
 app.use('/auth', authRouter)
 

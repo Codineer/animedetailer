@@ -7,19 +7,23 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
+        unique: [true, "unique email is required"],
+        index: true,
         required: [true, 'email is required']
-    },
-    sessionId: {
-        type: String,
-        required: [true, ' email is required']
-    },
-    sessionExpiryDate: {
-        type: Date,
-        required: [true, 'expiry date is required']
     },
     password: {
         type: String,
         required: [true, 'password is required']
+    },
+    sessionId: {
+        type: String,
+        unique: [true, "unique sessionId is required"],
+        index: true,
+        required: [true, 'sessionId is required']
+    },
+    sessionExpiryDate: {
+        type: Date,
+        required: [true, 'expiry date is required']
     }
 
 }, {
