@@ -35,7 +35,7 @@ const port = 3000
 app.use(express.static('public'))
 app.use(cookieParser())
 app.use(express.json());
-app.use(authMiddleware)
+// app.use(authMiddleware)
 app.use('/anime', router)
 app.use('/auth', authRouter)
 
@@ -153,7 +153,7 @@ app.post('/logout', async (req, res, next) => {
     }
 })
 app.get('/verify-email/:slug', async (req, res, next) => {
-    return res.render('email-verification.ejs')
+    return res.render('email-verification')
 })
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
