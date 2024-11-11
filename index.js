@@ -1,6 +1,4 @@
 import express from 'express'
-import path from 'path';
-import { fileURLToPath } from 'url';
 import router from './routes/anime/anime.js';
 import { router as authRouter } from './routes/auth/user.js';
 import KitsuApi from 'kitsu-json-api';
@@ -35,7 +33,7 @@ const port = 3000
 app.use(express.static('public'))
 app.use(cookieParser())
 app.use(express.json());
-// app.use(authMiddleware)
+app.use(authMiddleware)
 app.use('/anime', router)
 app.use('/auth', authRouter)
 
@@ -154,6 +152,9 @@ app.post('/logout', async (req, res, next) => {
 })
 app.get('/verify-email/:slug', async (req, res, next) => {
     return res.render('email-verification')
+})
+app.get('/get-verification-id/:id', async (req, res, next) => {
+
 })
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

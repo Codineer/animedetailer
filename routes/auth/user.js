@@ -3,6 +3,8 @@ import { v4 as uuid } from "uuid";
 import User from "../../models/user.models.js";
 import bcrypt from 'bcrypt'
 import { sendJsonError } from "../../services/errorJsonres.js";
+import { getAndSetVerificationMailId } from "../../services/VerificationMailId.js";
+import { sendVerificationMail } from "../../services/sendVerificationMail.js";
 const router = Router()
 router.get('/login', async (req, res) => {
     res.render('sign-In.ejs')
@@ -58,7 +60,9 @@ router.post('/register', async (req, res) => {
         }
         const hashedPassword = await bcrypt.hash(password.trim(), 10);
         const sessionId = uuid()
+
         const sessionExpiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
+
 
         const user = await User.create({
             name,
@@ -67,18 +71,21 @@ router.post('/register', async (req, res) => {
             sessionId,
             sessionExpiryDate
         })
+        const userId = user._id.toString()
+        const verification_token = await getAndSetVerificationMailId(userId, user)
+        const result = await sendVerificationMail(user.email, verification_token)
+        console.log(user, result)
+
         if (user) {
             res.cookie('uid', sessionId, { httpOnly: true, expires: sessionExpiryDate })
             return res.json({ success: true, redirectUrl: "/" });
         }
         else {
             return sendJsonError(res, "Error making new user!")
-
-
         }
     }
     catch (e) {
-        console.log(e.message)
+        console.log(e)
 
         const errorMessage = e.message
         let message;

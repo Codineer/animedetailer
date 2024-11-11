@@ -30,12 +30,41 @@ const userSchema = new Schema({
     },
     sessionExpiryDate: {
         type: Date,
-        required: [true, 'expiry date is required']
+        required: [true, 'session expiry date is required']
+    },
+    verifyId: {
+        type: String,
+        unique: [true, "unique verifyId is required"],
+        index: true,
+
+    },
+    verifyIdExpiryDate: {
+        type: Date,
+
+    },
+    isVerfied: {
+        type: Boolean,
+        default: false
     }
 
 }, {
     timestamps: true
 })
 
+const sessionSchema = new Schema({
+
+    sessionId: {
+        type: String,
+        unique: [true, "unique sessionId is required"],
+        index: true,
+        required: [true, 'sessionId is required']
+    },
+    sessionExpiryDate: {
+        type: Date,
+        required: [true, 'expiry date is required']
+    }
+}, {
+    timestamps: true
+})
 const User = mongoose.model('user', userSchema)
 export default User
