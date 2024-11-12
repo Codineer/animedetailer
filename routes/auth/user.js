@@ -66,12 +66,14 @@ router.post('/register', async (req, res) => {
             name,
             email: email.trim().toLowerCase(),
             password: hashedPassword,
-            sessionId,
-            sessionExpiryDate
-        })
 
+        })
+        const userId = user._id.toString()
+        const verification_token = await getAndSetVerificationMailId(userId, user)
+        const result = await sendVerificationMail(user.email, verification_token)
+        console.log(user, result)
         if (user) {
-            res.cookie('uid', sessionId, { httpOnly: true, expires: sessionExpiryDate })
+            // res.cookie('uid', sessionId, { httpOnly: true, expires: sessionExpiryDate })
             return res.json({ success: true, redirectUrl: "/" });
         }
         else {
@@ -106,18 +108,15 @@ router.get('/verify-email/:slug', async (req, res, next) => {
     const token = req.params.slug
     const { result, user } = await verifyVerificationMailId(token)
     if (result) {
-        res.cookie()
-        const userId = user._id.toString()
-        const verification_token = await getAndSetVerificationMailId(userId, user)
-        const result = await sendVerificationMail(user.email, verification_token)
-        console.log(user, result)
         const sessionId = uuid()
-
         const sessionExpiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
+        const output = await user.updateOne(
+            {
+                sessionId,
+                sessionExpiryDate
+            })
         res.cookie('uid', sessionId, { httpOnly: true, expires: sessionExpiryDate })
         return res.json({ success: true, redirectUrl: "/" });
-
-
     }
     return res.render('email-verification')
 })

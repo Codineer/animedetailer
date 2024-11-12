@@ -26,11 +26,11 @@ const userSchema = new Schema({
         type: String,
         unique: [true, "unique sessionId is required"],
         index: true,
-        required: [true, 'sessionId is required']
+        // required: [true, 'sessionId is required']
     },
     sessionExpiryDate: {
         type: Date,
-        required: [true, 'session expiry date is required']
+        // required: [true, 'session expiry date is required']
     },
 
     isVerified: {
