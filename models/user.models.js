@@ -32,17 +32,8 @@ const userSchema = new Schema({
         type: Date,
         required: [true, 'session expiry date is required']
     },
-    verifyId: {
-        type: String,
-        unique: [true, "unique verifyId is required"],
-        index: true,
 
-    },
-    verifyIdExpiryDate: {
-        type: Date,
-
-    },
-    isVerfied: {
+    isVerified: {
         type: Boolean,
         default: false
     }

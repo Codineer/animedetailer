@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 import User from "../../models/user.models.js";
 import bcrypt from 'bcrypt'
 import { sendJsonError } from "../../services/errorJsonres.js";
-import { getAndSetVerificationMailId } from "../../services/VerificationMailId.js";
+import { getAndSetVerificationMailId, verifyVerificationMailId } from "../../services/VerificationMailId.js";
 import { sendVerificationMail } from "../../services/sendVerificationMail.js";
 const router = Router()
 router.get('/login', async (req, res) => {
@@ -59,9 +59,7 @@ router.post('/register', async (req, res) => {
 
         }
         const hashedPassword = await bcrypt.hash(password.trim(), 10);
-        const sessionId = uuid()
 
-        const sessionExpiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
 
         const user = await User.create({
@@ -71,10 +69,6 @@ router.post('/register', async (req, res) => {
             sessionId,
             sessionExpiryDate
         })
-        const userId = user._id.toString()
-        const verification_token = await getAndSetVerificationMailId(userId, user)
-        const result = await sendVerificationMail(user.email, verification_token)
-        console.log(user, result)
 
         if (user) {
             res.cookie('uid', sessionId, { httpOnly: true, expires: sessionExpiryDate })
@@ -107,5 +101,24 @@ router.post('/register', async (req, res) => {
 
     }
 
+})
+router.get('/verify-email/:slug', async (req, res, next) => {
+    const token = req.params.slug
+    const { result, user } = await verifyVerificationMailId(token)
+    if (result) {
+        res.cookie()
+        const userId = user._id.toString()
+        const verification_token = await getAndSetVerificationMailId(userId, user)
+        const result = await sendVerificationMail(user.email, verification_token)
+        console.log(user, result)
+        const sessionId = uuid()
+
+        const sessionExpiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
+        res.cookie('uid', sessionId, { httpOnly: true, expires: sessionExpiryDate })
+        return res.json({ success: true, redirectUrl: "/" });
+
+
+    }
+    return res.render('email-verification')
 })
 export { router }

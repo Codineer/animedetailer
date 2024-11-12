@@ -150,12 +150,8 @@ app.post('/logout', async (req, res, next) => {
         return sendJsonError(res, "something went wrong!")
     }
 })
-app.get('/verify-email/:slug', async (req, res, next) => {
-    return res.render('email-verification')
-})
-app.get('/get-verification-id/:id', async (req, res, next) => {
 
-})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })

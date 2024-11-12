@@ -11,12 +11,12 @@ const transporter = nodemailer.createTransport({
 // console.log(process.env.MAIL, process.env.MAIL_PASS);
 
 export const sendVerificationMail = async (email, token) => {
-    const verificationUrl = "/verify-email/326"
+    const verificationUrl = "http://localhost:3000/auth/verify-email"
     const output = await transporter.sendMail({
         from: 'devirakhi294@gmail.com',
         to: email,
         subject: 'Verify Your Email',
-        html: `<p>Please verify your email by clicking on the link below:</p><a href="${verificationUrl}">${verificationUrl}/${token}</a>`
+        html: `<p>Please verify your email by clicking on the link below:</p><p>>${verificationUrl}/${token}</p>`
     });
     return output
 

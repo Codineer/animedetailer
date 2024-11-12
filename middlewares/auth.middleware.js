@@ -14,7 +14,8 @@ export const authMiddleware = async (req, res, next) => {
     if (user && uuid) {
         console.log("user found")
         const currentDate = new Date()
-        if (user.sessionExpiryDate > currentDate) {
+        console.log(user.isVerified)
+        if ((user.sessionExpiryDate > currentDate) && (user.isVerified == true)) {
             if (isAuthPath) {
                 return res.redirect('/')
 
