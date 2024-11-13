@@ -19,14 +19,22 @@
                     width="80px" alt=""></div>
         </div>
         <div class="email">
-            Email Verified
+            <Button class="btn" disabled>Resend</Button>
         </div>
         <div class="continue">
             <a href="/auth/login">
-                Continue to login page
+                verfied?Continue to login
             </a>
         </div>
     </div>
+    <script>
+        btn.disabled = true;
+
+        // Enable the button after 10 seconds
+        setTimeout(() => {
+            btn.disabled = false;
+        }, 10000);
+    </script>
 </body>
 
 </html>

@@ -34,6 +34,12 @@ router.post('/login', async (req, res) => {
 
         }
         console.log("password correct")
+        if (!user.isVerified) {
+
+            const verification_token = await getAndSetVerificationMailId(user._id.toString())
+            const result = await sendVerificationMail(user.email, verification_token)
+            return sendJsonError(res, 'Not verfied check inbox please for verfication link')
+        }
         const sessionId = uuid()
         const sessionExpiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
         const output = await user.updateOne(
@@ -69,12 +75,12 @@ router.post('/register', async (req, res) => {
 
         })
         const userId = user._id.toString()
-        const verification_token = await getAndSetVerificationMailId(userId, user)
+        const verification_token = await getAndSetVerificationMailId(userId)
         const result = await sendVerificationMail(user.email, verification_token)
         console.log(user, result)
         if (user) {
             // res.cookie('uid', sessionId, { httpOnly: true, expires: sessionExpiryDate })
-            return res.json({ success: true, redirectUrl: "/" });
+            return res.json({ success: true, redirectUrl: `/auth/resend-email/${userId}` });
         }
         else {
             return sendJsonError(res, "Error making new user!")
@@ -106,18 +112,27 @@ router.post('/register', async (req, res) => {
 })
 router.get('/verify-email/:slug', async (req, res, next) => {
     const token = req.params.slug
-    const { result, user } = await verifyVerificationMailId(token)
-    if (result) {
-        const sessionId = uuid()
-        const sessionExpiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
-        const output = await user.updateOne(
-            {
-                sessionId,
-                sessionExpiryDate
-            })
-        res.cookie('uid', sessionId, { httpOnly: true, expires: sessionExpiryDate })
-        return res.json({ success: true, redirectUrl: "/" });
+    const result = await verifyVerificationMailId(token)
+    console.log(result, "res")
+    if (result == "verified") {
+        return res.render('email-verification')
     }
-    return res.render('email-verification')
+    else if (result == 'already verified') {
+        return res.status(200).redirect('/auth/login')
+    }
+    else if (result === 'jwt expired') {
+
+        return res.status(200).send(` <html>
+    <body>
+      <script>
+        alert('verification link expired. Redirecting to login...');
+        window.location.href = '/auth/login';
+      </script>
+    </body>
+  </html>`)
+
+    }
+
 })
+
 export { router }

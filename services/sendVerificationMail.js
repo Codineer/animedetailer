@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 // console.log(process.env.MAIL, process.env.MAIL_PASS);
 
 export const sendVerificationMail = async (email, token) => {
-    const verificationUrl = "http://localhost:3000/auth/verify-email"
+    const verificationUrl = "https://animedetailer.onrender.com/auth/verify-email"
     const output = await transporter.sendMail({
         from: 'devirakhi294@gmail.com',
         to: email,

@@ -1,4 +1,5 @@
 import User from "../models/user.models.js"
+
 export const authMiddleware = async (req, res, next) => {
     const path = req.originalUrl
     const isAuthPath = path.includes('/auth')
@@ -11,11 +12,11 @@ export const authMiddleware = async (req, res, next) => {
     })
 
     // console.log(req.cookies)
-    if (user && uuid) {
-        console.log("user found")
+    if (user) {
+
         const currentDate = new Date()
         console.log(user.isVerified)
-        if ((user.sessionExpiryDate > currentDate) && (user.isVerified == true)) {
+        if ((user.sessionExpiryDate > currentDate)) {
             if (isAuthPath) {
                 return res.redirect('/')
 
@@ -30,9 +31,14 @@ export const authMiddleware = async (req, res, next) => {
         else {
             res.cookie('uid', "", { httpOnly: true, expires: new Date(Date.now() + 2000) })
             if (!isAuthPath) {
-                return res.redirect('/')
+                return res.redirect('/auth/login')
+            }
+            else {
+                return next()
             }
         }
+
+
     } else {
 
         if (isAuthPath) {
